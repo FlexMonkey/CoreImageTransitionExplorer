@@ -39,7 +39,7 @@ class ViewController: UIViewController
     
     let transitionSegmentedControl = UISegmentedControl(items: ["CIDissolveTransition", "CIBarsSwipeTransition",
         "CIModTransition", "CISwipeTransition",
-        "CICopyMachineTransition", "CIFlashTransition"])
+        "CICopyMachineTransition", "CIFlashTransition", "CIRippleTransition"].sort())
     
     var transitionTime = 0.0
     let transitionStep = 0.005
@@ -51,7 +51,7 @@ class ViewController: UIViewController
     var imageOneIsTransitionTarget: Bool = false
     
     let returnImageSize = CGSize(width: 1024, height: 1024)
-    let rect1024x1024 = CGRect(x: 0, y: 0, width: 1024, height: 1024)
+    static let rect1024x1024 = CGRect(x: 0, y: 0, width: 1024, height: 1024)
     
     var randomAssetIndex: Int
     {
@@ -111,20 +111,23 @@ class ViewController: UIViewController
                 kCIInputTransformKey: ViewController.centerImageTransform(imageTwo)])!
         
         // ---
+
+        let source = CompositeOverBlackFilter()
+        source.inputImage = imageOneIsTransitionTarget ? transformFilterOne.outputImage! : transformFilterTwo.outputImage!
         
-        let source = imageOneIsTransitionTarget ? transformFilterOne.outputImage! : transformFilterTwo.outputImage!
-        let target = imageOneIsTransitionTarget ? transformFilterTwo.outputImage! : transformFilterOne.outputImage!
-    
+        let target = CompositeOverBlackFilter()
+        target.inputImage = imageOneIsTransitionTarget ? transformFilterTwo.outputImage! : transformFilterOne.outputImage!
+   
         let transitionName = transitionSegmentedControl.titleForSegmentAtIndex(transitionSegmentedControl.selectedSegmentIndex)!
         
         let transition = CIFilter(name: transitionName,
-            withInputParameters: [kCIInputImageKey: source,
-                kCIInputTargetImageKey: target,
+            withInputParameters: [kCIInputImageKey: source.outputImage,
+                kCIInputTargetImageKey: target.outputImage,
                 kCIInputTimeKey: transitionTime])!
 
         if transition.inputKeys.contains(kCIInputExtentKey)
         {
-            transition.setValue(CIVector(CGRect: rect1024x1024),
+            transition.setValue(CIVector(CGRect: ViewController.rect1024x1024),
                 forKey: kCIInputExtentKey)
         }
         
@@ -133,11 +136,14 @@ class ViewController: UIViewController
             transition.setValue(CIVector(x: returnImageSize.width / 2, y: returnImageSize.height / 2),
                 forKey: kCIInputCenterKey)
         }
-      
-        let finalImage = self.imageView.ciContext.createCGImage(transition.outputImage!,
-            fromRect: rect1024x1024)
         
-        imageView.image = CIImage(CGImage: finalImage)
+        if transition.inputKeys.contains(kCIInputShadingImageKey)
+        {
+            transition.setValue(CIImage(),
+                forKey: kCIInputShadingImageKey)
+        }
+
+        imageView.image = transition.outputImage!
         
         transitionTime += transitionStep
         
