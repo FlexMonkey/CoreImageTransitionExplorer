@@ -44,7 +44,7 @@ class ViewController: UIViewController
     var transitionTime = 0.0
     let transitionStep = 0.005
     
-    var assets = ViewController.getAllAssets()
+    lazy var assets = ViewController.getAllAssets()
     
     var imageOne: CIImage?
     var imageTwo: CIImage?
@@ -78,12 +78,21 @@ class ViewController: UIViewController
         
         // ---
 
+        PHPhotoLibrary.requestAuthorization { (status) -> Void in
+            if status == .Authorized {
+                self.requestAssets()
+            }
+        }
+    }
+
+    func requestAssets()
+    {
         manager.requestImageForAsset(assets[randomAssetIndex],
             targetSize: returnImageSize,
             contentMode: PHImageContentMode.AspectFit,
             options: requestOptions,
             resultHandler: imageRequestResultHandler)
-        
+
         manager.requestImageForAsset(assets[randomAssetIndex],
             targetSize: returnImageSize,
             contentMode: PHImageContentMode.AspectFit,
@@ -93,7 +102,7 @@ class ViewController: UIViewController
         let displayLink = CADisplayLink(target: self, selector: Selector("step"))
         displayLink.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSDefaultRunLoopMode)
     }
-    
+
     func step()
     {
         guard let imageOne = imageOne, imageTwo = imageTwo else
