@@ -19,6 +19,13 @@ class BlurTransition: CIFilter
             ])
     }
     
+    var inputImage: CIImage?
+    var inputTargetImage: CIImage?
+    
+    var inputTime: CGFloat = 0.5
+    
+    let maxBlur = CGFloat(100)
+    
     override var attributes: [String : AnyObject]
     {
         return [
@@ -70,17 +77,6 @@ class BlurTransition: CIFilter
         
         return finalImage
     }
-    
-    var inputImage: CIImage?
-    var inputTargetImage: CIImage?
-    
-    var inputTime: CGFloat = 0.5
-    
-    let maxBlur = CGFloat(100)
-    
-    let transitionFilter = CIFilter(name: "CIDissolveTransition")!
-    let sourceBlurFilter = CIFilter(name: "CIGaussianBlur")!
-    let targetBlurFilter = CIFilter(name: "CIGaussianBlur")
 }
 
 class CustomFiltersVendor: NSObject, CIFilterConstructor
