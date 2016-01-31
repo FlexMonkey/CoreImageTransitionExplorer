@@ -25,8 +25,6 @@ class CustomTransitionFilter: CIFilter
     override var attributes: [String : AnyObject]
     {
         return [
-            kCIAttributeFilterDisplayName: "Blur Transition",
-            
             "inputImage": [kCIAttributeIdentity: 0,
                 kCIAttributeClass: "CIImage",
                 kCIAttributeDisplayName: "Image",
