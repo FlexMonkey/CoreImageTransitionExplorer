@@ -40,7 +40,7 @@ class ViewController: UIViewController
     let transitionSegmentedControl = UISegmentedControl(items: ["CIDissolveTransition", "CIBarsSwipeTransition",
         "CIModTransition", "CISwipeTransition",
         "CICopyMachineTransition", "CIFlashTransition", "CIRippleTransition",
-        "BlurTransition"].sort())
+        "BlurTransition", "CircleTransition", "StarTransition"].sort())
     
     var transitionTime = 0.0
     let transitionStep = 0.005
@@ -64,6 +64,8 @@ class ViewController: UIViewController
         super.viewDidLoad()
         
         BlurTransition.register()
+        CircleTransition.register()
+        StarTransition.register()
         
         view.backgroundColor = UIColor.blackColor()
         imageView.backgroundColor = UIColor.blackColor()

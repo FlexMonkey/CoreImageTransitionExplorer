@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3E75058F1C5D35C400248A3F /* BlurTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E75058E1C5D35C400248A3F /* BlurTransition.swift */; };
+		3E75058F1C5D35C400248A3F /* CustomTransitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E75058E1C5D35C400248A3F /* CustomTransitions.swift */; };
 		3E7F77621C42945200B3BF30 /* CompositeOverBlackFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7F77611C42945200B3BF30 /* CompositeOverBlackFilter.swift */; };
 		3E97FABA1C421B3F006365F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E97FAB91C421B3F006365F7 /* AppDelegate.swift */; };
 		3E97FABC1C421B3F006365F7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E97FABB1C421B3F006365F7 /* ViewController.swift */; };
@@ -18,7 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3E75058E1C5D35C400248A3F /* BlurTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlurTransition.swift; path = filters/BlurTransition.swift; sourceTree = "<group>"; };
+		3E75058E1C5D35C400248A3F /* CustomTransitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomTransitions.swift; path = filters/CustomTransitions.swift; sourceTree = "<group>"; };
 		3E7F77611C42945200B3BF30 /* CompositeOverBlackFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CompositeOverBlackFilter.swift; path = filters/CompositeOverBlackFilter.swift; sourceTree = "<group>"; };
 		3E97FAB61C421B3F006365F7 /* CoreImageTransitionExplorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreImageTransitionExplorer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E97FAB91C421B3F006365F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -45,7 +45,7 @@
 			isa = PBXGroup;
 			children = (
 				3E7F77611C42945200B3BF30 /* CompositeOverBlackFilter.swift */,
-				3E75058E1C5D35C400248A3F /* BlurTransition.swift */,
+				3E75058E1C5D35C400248A3F /* CustomTransitions.swift */,
 			);
 			name = filters;
 			sourceTree = "<group>";
@@ -170,7 +170,7 @@
 			files = (
 				3E97FACD1C421BE3006365F7 /* ImageView.swift in Sources */,
 				3E97FABC1C421B3F006365F7 /* ViewController.swift in Sources */,
-				3E75058F1C5D35C400248A3F /* BlurTransition.swift in Sources */,
+				3E75058F1C5D35C400248A3F /* CustomTransitions.swift in Sources */,
 				3E97FABA1C421B3F006365F7 /* AppDelegate.swift in Sources */,
 				3E7F77621C42945200B3BF30 /* CompositeOverBlackFilter.swift in Sources */,
 			);
